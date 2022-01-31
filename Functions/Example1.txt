@@ -1,0 +1,1 @@
+C++ is an object oriented programming language. It used to be called c with classes. Soon we will make a class for our programming assignment. We turn every assignment in with git. I wish that Linux Torvalds could have made it more user friendly.
