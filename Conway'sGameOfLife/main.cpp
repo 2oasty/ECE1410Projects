@@ -199,49 +199,49 @@ uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size
 	uint64_t aliveNeighbors = 0;
 
 	//top left
-	if (i - 1 >= 0 && j - 1 >= 0 && myVector[i][j] == 1)
+	if (i - 1 >= 0 && j - 1 >= 0 && myVector[i - 1][j - 1] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//top
-	if (i - 1 >= 0 && myVector[i][j] == 1)
+	if (i - 1 >= 0 && myVector[i - 1][j] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//top right
-	if (i - 1 >= 0 && j + 1 < width && myVector[i][j] == 1)
+	if (i - 1 >= 0 && j + 1 < width && myVector[i - 1][j + 1] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//left
-	if (j - 1 >= 0 && myVector[i][j] == 1)
+	if (j - 1 >= 0 && myVector[i][j - 1] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//right
-	if (j + 1 < width && myVector[i][j] == 1)
+	if (j + 1 < width && myVector[i][j + 1] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//bottom left
-	if (i + 1 < height && j - 1 >= 0 && myVector[i][j] == 1)
+	if (i + 1 < height && j - 1 >= 0 && myVector[i + 1][j - 1] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//bottom
-	if (i + 1 < height && myVector[i][j] == 1)
+	if (i + 1 < height && myVector[i + 1][j] == 1)
 	{
 		aliveNeighbors++;
 	}
 
 	//bottom right
-	if (i + 1 < height && j + 1 < width && myVector[i][j] == 1)
+	if (i + 1 < height && j + 1 < width && myVector[i + 1][j + 1] == 1)
 	{
 		aliveNeighbors++;
 	}
