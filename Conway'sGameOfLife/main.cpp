@@ -45,46 +45,63 @@ int main(int argc, char* argv[])
 	std::vector<std::vector<bool>> startingState(height, std::vector<bool>(width));
 
 	readStartingState(startingState, fin);
-	
-	printVector(startingState, fout);
-
 
 	//Copies startingState into newState
 	std::vector<std::vector<bool>> newState(height, std::vector<bool>(width));
 	newState = startingState;
 
-
-	for (int i = 0; i < startingState.size(); i++)
+	for (int k = 0; k < rounds; k++)
 	{
-		for (int j = 0; j < startingState[i].size(); j++)
+		for (int i = 0; i < startingState.size(); i++)
 		{
-			//If tile is dead
-			if (startingState[i][j] == 0) 
+			for (int j = 0; j < startingState[i].size(); j++)
 			{
-				if (countAliveNeighbors(startingState, i, j, width, height) == 3) 
+				//If tile is dead
+				if (startingState[i][j] == 0)
 				{
-					newState[i][j] = 1;
+					if (countAliveNeighbors(startingState, i, j, width, height) == 3)
+					{
+						newState[i][j] = 1;
+					}
+					else
+					{
+						newState[i][j] = 0;
+					}
 				}
+				//If tile is alive
 				else
 				{
-					newState[i][j] = 0;
-				}
-			}
-			//If tile is alive
-			else
-			{
-				if (countAliveNeighbors(startingState, i, j, width, height) == 2 || countAliveNeighbors(startingState, i, j, width, height) == 3)
-				{
-					newState[i][j] = 1;
-				}
-				else
-				{
-					newState[i][j] = 0;
+					if (countAliveNeighbors(startingState, i, j, width, height) == 2 || countAliveNeighbors(startingState, i, j, width, height) == 3)
+					{
+						newState[i][j] = 1;
+					}
+					else
+					{
+						newState[i][j] = 0;
+					}
 				}
 			}
 		}
+		for (size_t i = 0; i < newState.size(); i++)
+		{
+			for (size_t j = 0; j < newState[i].size(); j++)
+			{
+				if (newState[i][j] == 0)
+				{
+					std::cout << "  ";
+				}
+				else
+				{
+					std::cout << "o ";
+				}
+			}
+			std::cout << std::endl;
+		}
+		startingState = newState;
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 
+	printVector(newState, fout);
 
 	return 0;
 }
