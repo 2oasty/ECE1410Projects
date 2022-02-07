@@ -8,7 +8,7 @@
 void openFile(std::string const& input, std::string const& output, std::ifstream& fin, std::ofstream& fout);
 void readStartingState(std::vector<std::vector<bool>>& myVector, std::ifstream& fin);
 void printVector(std::vector<std::vector<bool>>const& myVector, std::ofstream& fout);
-uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j);
+uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j, int const& width, int const& height);
 
 /******************************************************************************
 * Function Title: main
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 			//If tile is dead
 			if (startingState[i][j] == 0) 
 			{
-				if (countAliveNeighbors(startingState, i, j) == 3) 
+				if (countAliveNeighbors(startingState, i, j, width, height) == 3) 
 				{
 					newState[i][j] = 1;
 				}
@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 			//If tile is alive
 			else
 			{
-				if (countAliveNeighbors(startingState, i, j) == 2 || countAliveNeighbors(startingState, i, j) == 3)
+				if (countAliveNeighbors(startingState, i, j, width, height) == 2 || countAliveNeighbors(startingState, i, j, width, height) == 3)
 				{
 					newState[i][j] = 1;
 				}
@@ -194,7 +194,57 @@ void printVector(std::vector<std::vector<bool>>const& myVector, std::ofstream& f
 * Begin
 * End
 ******************************************************************************/
-uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j) 
+uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j, int const& width, int const& height) 
 {
+	uint64_t aliveNeighbors = 0;
 
+	//top left
+	if (i - 1 >= 0 && j - 1 >= 0 && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//top
+	if (i - 1 >= 0 && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//top right
+	if (i - 1 >= 0 && j + 1 < width && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//left
+	if (j - 1 >= 0 && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//right
+	if (j + 1 < width && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//bottom left
+	if (i + 1 < height && j - 1 >= 0 && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//bottom
+	if (i + 1 < height && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	//bottom right
+	if (i + 1 < height && j + 1 < width && myVector[i][j] == 1)
+	{
+		aliveNeighbors++;
+	}
+
+	return aliveNeighbors;
 }
