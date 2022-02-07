@@ -7,7 +7,8 @@
 
 void openFile(std::string const& input, std::string const& output, std::ifstream& fin, std::ofstream& fout);
 void readStartingState(std::vector<std::vector<bool>>& myVector, std::ifstream& fin);
-void printVector(std::vector<std::vector<bool>>& myVector, std::ofstream& fout);
+void printVector(std::vector<std::vector<bool>>const& myVector, std::ofstream& fout);
+uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j);
 
 /******************************************************************************
 * Function Title: main
@@ -46,6 +47,48 @@ int main(int argc, char* argv[])
 	readStartingState(startingState, fin);
 	
 	printVector(startingState, fout);
+
+
+
+
+	//Copies startingState into newState
+	std::vector<std::vector<bool>> newState(height, std::vector<bool>(width));
+	startingState = newState;
+
+
+	for (size_t i = 0; i < startingState.size(); i++)
+	{
+		for (size_t j = 0; j < startingState[i].size(); j++)
+		{
+			//If tile is dead
+			if (startingState[i][j] == 0) 
+			{
+				if (countAliveNeighbors(startingState, i, j) == 3) 
+				{
+					newState[i][j] = 1;
+				}
+				else
+				{
+					newState[i][j] = 0;
+				}
+			}
+			//If tile is alive
+			else
+			{
+				if (countAliveNeighbors(startingState, i, j) == 2 || countAliveNeighbors(startingState, i, j) == 3)
+				{
+					newState[i][j] = 1;
+				}
+				else
+				{
+					newState[i][j] = 0;
+				}
+			}
+		}
+	}
+
+
+
 
 	return 0;
 }
@@ -118,7 +161,7 @@ void readStartingState(std::vector<std::vector<bool>>& myVector, std::ifstream& 
 * Begin
 * End
 ******************************************************************************/
-void printVector(std::vector<std::vector<bool>>& myVector, std::ofstream& fout)
+void printVector(std::vector<std::vector<bool>>const& myVector, std::ofstream& fout)
 {
 	for (size_t i = 0; i < myVector.size(); i++)
 	{
@@ -135,4 +178,23 @@ void printVector(std::vector<std::vector<bool>>& myVector, std::ofstream& fout)
 		}
 		fout << std::endl;
 	}
+}
+
+
+/******************************************************************************
+* Function Title: countNeighbors
+*
+* Summary:
+*
+* Inputs:
+* Outputs:
+*******************************************************************************
+* Pseudocode:
+*
+* Begin
+* End
+******************************************************************************/
+uint64_t countAliveNeighbors(std::vector<std::vector<bool>>const& myVector, size_t const& i, size_t const& j) 
+{
+
 }
