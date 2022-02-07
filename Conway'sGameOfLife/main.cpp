@@ -25,11 +25,22 @@ int main(int argc, char* argv[])
 	std::string inputFile, outputFile;
 	std::ifstream fin;
 	std::ofstream fout;
+	int width, height, rounds;
+
 
 	inputFile = argv[1];
 	outputFile = argv[2];
 	
 	openFile(inputFile, outputFile, fin, fout);
+
+	//Scans in first number as width
+	fin >> width;
+
+	//Scans in second number as height
+	fin >> height;
+
+	//Scans in third number as rounds
+	fin >> rounds;
 
 	return 0;
 }
