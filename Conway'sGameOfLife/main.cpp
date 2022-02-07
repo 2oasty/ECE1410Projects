@@ -6,6 +6,7 @@
 #include <vector>
 
 void openFile(std::string const& input, std::string const& output, std::ifstream& fin, std::ofstream& fout);
+void readStartingState(std::vector<std::vector<bool>>& myVector, std::ifstream& fin);
 void printVector(std::vector<std::vector<bool>>& myVector, std::ofstream& fout);
 
 /******************************************************************************
@@ -42,16 +43,7 @@ int main(int argc, char* argv[])
 
 	std::vector<std::vector<bool>> startingState(height, std::vector<bool>(width));
 
-	//Reads in starting state from input file
-	bool startingValue = 0;
-	for (size_t i = 0; i < startingState.size(); i++) 
-	{
-		for (size_t j = 0; j < startingState[i].size(); j++)
-		{
-			fin >> startingValue;
-			startingState[i][j] = startingValue;
-		}
-	}
+	readStartingState(startingState, fin);
 	
 	printVector(startingState, fout);
 
@@ -83,6 +75,33 @@ void openFile(std::string const& input, std::string const& output, std::ifstream
 	}
 
 	fout.open(output);
+}
+
+
+/******************************************************************************
+* Function Title: readStartingState
+*
+* Summary:
+*
+* Inputs:
+* Outputs:
+*******************************************************************************
+* Pseudocode:
+*
+* Begin
+* End
+******************************************************************************/
+void readStartingState(std::vector<std::vector<bool>>& myVector, std::ifstream& fin)
+{
+	bool startingValue = 0;
+	for (size_t i = 0; i < myVector.size(); i++)
+	{
+		for (size_t j = 0; j < myVector[i].size(); j++)
+		{
+			fin >> startingValue;
+			myVector[i][j] = startingValue;
+		}
+	}
 }
 
 
