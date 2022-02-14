@@ -42,3 +42,26 @@ void PiggyBank::deposit(double money)
 
 	m_balance += money;
 }
+
+void PiggyBank::withdraw(double money)
+{
+	if (money < 0)
+	{
+		std::cout << "Cannot withdraw negative" << std::endl;
+		exit(1);
+	}
+
+	if (m_state == false)
+	{
+		std::cout << "Cannot withdraw money into broken bank" << std::endl;
+		exit(1);
+	}
+
+	if (money > m_balance)
+	{
+		std::cout << "Cannot withdraw more money than is available" << std::endl;
+		exit(1);
+	}
+
+	m_balance -= money;
+}
