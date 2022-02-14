@@ -27,11 +27,19 @@ public:
 	*/
 	double countSavings() const;
 
+	/** Attempts to add money to the piggy bank
+	* @param[in] money - Amount being deposited
+	*/
 	void deposit(double money);
 
+	/** Attempts to remove money from the piggy bank
+	* @param[in] money - Amount being withdrawn
+	*/
 	void withdraw(double money);
 
-	
+	/** Smashes the piggy bank
+	*/
+	void smash();
 
 private:
 	double m_balance;
