@@ -22,6 +22,16 @@ public:
 	*/
 	PiggyBank(PiggyBank const& pb) = delete;
 
+	/** Returns how much is in the piggy bank
+	* @return Money in the piggy bank
+	*/
+	double countSavings() const;
+
+	void deposit(double money);
+
+	void withdraw(double money);
+
+	
 
 private:
 	double m_balance;

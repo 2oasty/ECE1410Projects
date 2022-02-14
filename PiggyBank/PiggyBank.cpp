@@ -20,3 +20,8 @@ PiggyBank::~PiggyBank()
 			<< m_balance << " upon deconstruction." << std::endl;
 	}
 }
+
+double PiggyBank::countSavings() const
+{
+	return m_balance;
+}
