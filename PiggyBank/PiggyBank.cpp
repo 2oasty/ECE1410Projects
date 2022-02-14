@@ -65,3 +65,14 @@ void PiggyBank::withdraw(double money)
 
 	m_balance -= money;
 }
+
+void PiggyBank::smash()
+{
+	m_state = false;
+
+	if (m_balance > 0)
+	{
+		std::cout << "NOOO!!! You lost $" << std::fixed << std::setprecision(2) 
+			<< m_balance << std::endl;
+	}
+}
