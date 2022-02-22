@@ -26,4 +26,4 @@ void Shape::printInformation()
 	std::cout << std::endl;
 }
 
-int Shape::count = 0;
+int Shape::count = 1;
