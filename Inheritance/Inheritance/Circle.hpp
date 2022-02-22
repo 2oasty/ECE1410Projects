@@ -14,12 +14,13 @@ public:
 	Circle(int radius);
 
 	//Calculate area override
-	virtual double calculateArea() override;
+	virtual double calculateArea() override final;
 
 	//Calculate perimeter override
-	virtual double calculatePerimeter() override;
+	virtual double calculatePerimeter() override final;
 
 private:
+	int id;
 	int m_radius;
 
 };
