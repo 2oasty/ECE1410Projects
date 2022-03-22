@@ -157,8 +157,9 @@ public:
 	//Overload ==
 	friend bool operator==(ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{
-		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) ==
-			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+		static const double delta = 0.000001;
+		return (((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) -
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary)) < delta);
 	}
 
 	//Gets real portion of imaginary number
