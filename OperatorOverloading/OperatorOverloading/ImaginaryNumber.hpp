@@ -12,7 +12,7 @@ public:
 	ImaginaryNumber(double real, double imaginary);
 
 	//Copy Constructor (For Linux)
-	
+	ImaginaryNumber(ImaginaryNumber const& num);
 
 	//Overload <<
 	friend std::ostream& operator<<(std::ostream& os, ImaginaryNumber const& num)

@@ -13,6 +13,12 @@ ImaginaryNumber::ImaginaryNumber(double real, double imaginary) :
 
 }
 
+ImaginaryNumber::ImaginaryNumber(ImaginaryNumber const& num)
+{
+    m_real = num.m_real;
+    m_imaginary = num.m_imaginary;
+}
+
 ImaginaryNumber& ImaginaryNumber::operator=(const ImaginaryNumber& rhs)
 {
     this->m_real = rhs.m_real;
