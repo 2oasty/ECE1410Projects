@@ -74,40 +74,60 @@ public:
 	//Overload /
 	friend ImaginaryNumber operator/(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
 	{
-		lhs /= rhs;
+		if (rhs.m_real == 0 && rhs.m_imaginary == 0)
+		{
+			lhs.m_real = 0;
+			lhs.m_imaginary = 0;
+			return lhs;
+		}
+
+		double realCopy = ((lhs.m_real * rhs.m_real) + (lhs.m_imaginary * rhs.m_imaginary)) /
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+
+		lhs.m_imaginary = ((lhs.m_imaginary * rhs.m_real) - (lhs.m_real * rhs.m_imaginary)) /
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+
+		lhs.m_real = realCopy;
+
 		return lhs;
 	}
 
 	//Overload =
+	ImaginaryNumber& operator=(const ImaginaryNumber& rhs);
 
 	//Overload <
 	friend bool operator< (ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{
-		return lhs.m_real == rhs.m_real;
+		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) <
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
 	}
 
 	//Overload <=
 	friend bool operator<=(ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{ 
-		return lhs.m_real == rhs.m_real;
+		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) <=
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
 	}
 
 	//Overload >
 	friend bool operator> (ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{ 
-		return lhs.m_real == rhs.m_real;
+		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) >
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
 	}
 
 	//Overload >=
 	friend bool operator>=(ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{ 
-		return lhs.m_real == rhs.m_real;
+		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) >=
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
 	}
 
 	//Overload ==
 	friend bool operator==(ImaginaryNumber const& lhs, ImaginaryNumber const& rhs)
 	{
-		return lhs.m_real == rhs.m_real;
+		return ((lhs.m_real * lhs.m_real) + (lhs.m_imaginary * lhs.m_imaginary)) ==
+			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
 	}
 
 	//Gets real portion of imaginary number
