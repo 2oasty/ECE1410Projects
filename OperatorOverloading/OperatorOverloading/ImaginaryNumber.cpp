@@ -15,45 +15,52 @@ ImaginaryNumber::ImaginaryNumber(double real, double imaginary) :
 
 }
 
-ImaginaryNumber& ImaginaryNumber::operator+=(ImaginaryNumber const& rhs) 
-{
-    this->m_real += rhs.m_real;
-    return *this;
-}
+//ImaginaryNumber& ImaginaryNumber::operator+=(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+//{
+//    this->m_real = this->m_real + rhs.m_real;
+//
+//    double realCopy = this->m_real;
+//
+//    this->m_imaginary = this->m_imaginary + rhs.m_imaginary;
+//
+//    this->m_real = realCopy;
+//
+//    return *this;
+//}
 
-ImaginaryNumber& ImaginaryNumber::operator-=(ImaginaryNumber const& rhs)
-{
-    this->m_real -= rhs.m_real;
-    return *this;
-}
+//ImaginaryNumber& ImaginaryNumber::operator-=(ImaginaryNumber const& rhs)
+//{
+//    this->m_real -= rhs.m_real;
+//    return *this;
+//}
 
-ImaginaryNumber& ImaginaryNumber::operator*=(ImaginaryNumber const& rhs)
-{
-    this->m_real *= rhs.m_real;
-    return *this;
-}
+//ImaginaryNumber& ImaginaryNumber::operator*=(ImaginaryNumber const& rhs)
+//{
+//    this->m_real *= rhs.m_real;
+//    return *this;
+//}
 
-ImaginaryNumber& ImaginaryNumber::operator/=(ImaginaryNumber const& rhs)
-{
-    /*if (rhs.m_real == 0 && rhs.m_imaginary == 0)
-    {
-        this->m_real = 0;
-        this->m_imaginary = 0;
-        return *this;
-    }
-
-    double realCopy = ((this->m_real * rhs.m_real) + (this->m_imaginary * rhs.m_imaginary)) /
-        ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
-
-   this->m_imaginary = ((this->m_imaginary * rhs.m_real) - (this->m_real * rhs.m_imaginary)) /
-        ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
-
-    this->m_real = realCopy;*/
-    
-    this->m_real = rhs.m_real;
-
-    return *this;
-}
+//ImaginaryNumber& ImaginaryNumber::operator/=(ImaginaryNumber const& rhs)
+//{
+//    /*if (rhs.m_real == 0 && rhs.m_imaginary == 0)
+//    {
+//        this->m_real = 0;
+//        this->m_imaginary = 0;
+//        return *this;
+//    }
+//
+//    double realCopy = ((this->m_real * rhs.m_real) + (this->m_imaginary * rhs.m_imaginary)) /
+//        ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+//
+//   this->m_imaginary = ((this->m_imaginary * rhs.m_real) - (this->m_real * rhs.m_imaginary)) /
+//        ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+//
+//    this->m_real = realCopy;*/
+//    
+//    this->m_real = rhs.m_real;
+//
+//    return *this;
+//}
 
 ImaginaryNumber& ImaginaryNumber::operator=(const ImaginaryNumber& rhs)
 {

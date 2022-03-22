@@ -12,6 +12,7 @@ public:
 	ImaginaryNumber(double real, double imaginary);
 
 	//Copy Constructor (For Linux)
+	
 
 	//Overload <<
 	friend std::ostream& operator<<(std::ostream& os, ImaginaryNumber const& num)
@@ -37,59 +38,89 @@ public:
 	}
 
 	//Overload +=
-	ImaginaryNumber& operator+=(ImaginaryNumber const& rhs);
-
-	//Overload +
-	friend ImaginaryNumber operator+(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	friend ImaginaryNumber& ImaginaryNumber::operator+=(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
 	{
-		lhs += rhs;
-		return lhs;
-	}
+		lhs.m_real = lhs.m_real + rhs.m_real;
 
-	//Overload -=
-	ImaginaryNumber& operator-=(ImaginaryNumber const& rhs);
+		double realCopy = lhs.m_real;
 
-
-	//Overload -
-	friend ImaginaryNumber operator-(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
-	{
-		lhs -= rhs;
-		return lhs;
-	}
-
-	//Overload *=
-	ImaginaryNumber& operator*=(ImaginaryNumber const& rhs);
-
-	//Overload *
-	friend ImaginaryNumber operator*(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
-	{
-		lhs *= rhs;
-		return lhs;
-	}
-
-	//Overload /=
-	ImaginaryNumber& operator/=(ImaginaryNumber const& rhs);
-
-
-	//Overload /
-	friend ImaginaryNumber operator/(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
-	{
-		if (rhs.m_real == 0 && rhs.m_imaginary == 0)
-		{
-			lhs.m_real = 0;
-			lhs.m_imaginary = 0;
-			return lhs;
-		}
-
-		double realCopy = ((lhs.m_real * rhs.m_real) + (lhs.m_imaginary * rhs.m_imaginary)) /
-			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
-
-		lhs.m_imaginary = ((lhs.m_imaginary * rhs.m_real) - (lhs.m_real * rhs.m_imaginary)) /
-			((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+		lhs.m_imaginary = lhs.m_imaginary + rhs.m_imaginary;
 
 		lhs.m_real = realCopy;
 
 		return lhs;
+	}
+
+	//Overload +
+	friend ImaginaryNumber operator+(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		return lhs+= rhs;
+	}
+
+	//Overload -=
+	friend ImaginaryNumber& operator-=(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		lhs.m_real = lhs.m_real - rhs.m_real;
+
+		double realCopy = lhs.m_real;
+
+		lhs.m_imaginary = lhs.m_imaginary - rhs.m_imaginary;
+
+		lhs.m_real = realCopy;
+
+		return lhs;
+	}
+
+	//Overload -
+	friend ImaginaryNumber operator-(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		return lhs -= rhs;
+	}
+
+	//Overload *=
+	friend ImaginaryNumber& operator*=(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		double realCopy = lhs.m_real;
+		
+		lhs.m_real = (lhs.m_real * rhs.m_real) - (lhs.m_imaginary * rhs.m_imaginary);
+
+		lhs.m_imaginary = (lhs.m_imaginary * rhs.m_real) + (realCopy * rhs.m_imaginary);
+
+		return lhs;
+	}
+
+	//Overload *
+	friend ImaginaryNumber operator*(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		return lhs *= rhs;
+	}
+
+	//Overload /=
+	friend ImaginaryNumber& operator/=(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		if (rhs.m_real == 0 && rhs.m_imaginary == 0)
+		{
+			lhs.m_real = 0;
+		    lhs.m_imaginary = 0;
+		    return lhs;
+		}
+		
+		double realCopy = lhs.m_real;
+
+		lhs.m_real = ((lhs.m_real * rhs.m_real) + (lhs.m_imaginary * rhs.m_imaginary)) /
+		    ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+
+		
+		lhs.m_imaginary = ((lhs.m_imaginary * rhs.m_real) - (realCopy * rhs.m_imaginary)) /
+		    ((rhs.m_real * rhs.m_real) + (rhs.m_imaginary * rhs.m_imaginary));
+		
+		return lhs;
+	}
+
+	//Overload /
+	friend ImaginaryNumber operator/(ImaginaryNumber lhs, ImaginaryNumber const& rhs)
+	{
+		return lhs /= rhs;
 	}
 
 	//Overload =
