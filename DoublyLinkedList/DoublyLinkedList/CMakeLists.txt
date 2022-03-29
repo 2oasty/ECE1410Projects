@@ -25,7 +25,7 @@ add_executable(DoublyLinkedListTest
   DoublyLinkedListTestOwn.cpp
   DoublyLinkedListTestGrader.cpp
   )
-target_link_libraries(DoublyLinkedListTest PUBLIC DoublyLinkedListLib gtest_main)
+target_link_libraries(DoublyLinkedListTest INTERFACE DoublyLinkedListLib PUBLIC gtest_main)
 install(TARGETS DoublyLinkedListTest DESTINATION "dist")
 include(GoogleTest)
 gtest_discover_tests(DoublyLinkedListTest)
