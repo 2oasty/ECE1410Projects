@@ -105,15 +105,11 @@ public:
 		}
 
 		//Value is in list
-		while (temp->next != nullptr)
+		while (temp != nullptr && temp->data != oldValue)
 		{
-			if (temp->data == oldValue)
-			{
-				temp->data = newValue;
-			}
-
 			temp = temp->next;
 		}
+		
 		if (temp->data == oldValue)
 		{
 			temp->data = newValue;

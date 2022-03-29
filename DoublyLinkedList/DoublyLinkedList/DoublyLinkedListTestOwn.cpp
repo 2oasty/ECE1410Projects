@@ -44,6 +44,7 @@ TEST(StudentWrittenTests, Duplicates)
 	EXPECT_EQ(list.size(), 4);
 
 	list.update(3, 6);
+	list.update(3, 6);
 	EXPECT_EQ(list.size(), 4);
 	EXPECT_THROW(list.retreive(3), std::runtime_error);
 	EXPECT_EQ(list.retreive(6), 6);
