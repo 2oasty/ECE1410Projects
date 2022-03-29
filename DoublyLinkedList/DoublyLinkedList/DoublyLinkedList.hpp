@@ -124,8 +124,7 @@ public:
 	void remove(T value)
 	{
 		std::shared_ptr<Node> temp = head;
-		std::shared_ptr<Node> tprev = temp->prev;
-		std::shared_ptr<Node> tnext = temp->next;
+		
 
 		//If list is empty or value not in list
 		if (retreive(value) != value)
@@ -139,59 +138,35 @@ public:
 			temp = temp->next;
 		}
 
-		if (tail == head)
+		if (temp != nullptr)
 		{
-			head = nullptr;
-			tail = nullptr;
+			std::shared_ptr<Node> tprev = temp->prev;
+			std::shared_ptr<Node> tnext = temp->next;
+
+			if (tail == head)
+			{
+				head = nullptr;
+				tail = nullptr;
+			}
+
+			else if (temp == head)
+			{
+				head = head->next;
+				head->prev = nullptr;
+			}
+
+			else if (temp == tail)
+			{
+				tprev->next = nullptr;
+				tail = tprev;
+			}
+
+			else
+			{
+				tprev->next = tnext;
+				tnext->prev = tprev;
+			}
 		}
-
-		else if (temp == head)
-		{
-			head = head->next;
-			head->prev = nullptr;
-		}
-
-		else if (temp == tail)
-		{
-			tprev->next = nullptr;
-			tail = tprev;
-		}
-
-		else
-		{
-			tprev->next = tnext;
-			tnext->prev = tprev;
-		}
-
-		////First node
-		//if (temp->prev == nullptr)
-		//{
-		//	if (temp->data == value)
-		//	{
-		//		head = temp->next;
-		//		
-		//	}
-		//}
-
-		////Last node
-		//if (temp->next == nullptr)
-		//{
-		//	if (temp->data == value)
-		//	{
-		//		//If single node
-		//		if (tail == head)
-		//		{
-		//			head = nullptr;
-		//			tail = nullptr;
-		//		}
-		//		else if (temp == tail)
-		//		{
-
-		//		}
-		//	}
-		//}
-
-
 	}
 
 	//size_t size()
