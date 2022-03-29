@@ -10,7 +10,7 @@ class DoublyLinkedList
 public:
 	
 	struct Node {
-		T data;
+		T data{};
 		std::shared_ptr<Node> next;
 		std::shared_ptr<Node> prev;
 	};
@@ -90,13 +90,40 @@ public:
 	//void update(T oldValue, T newValue)
 	void update(T oldValue, T newValue)
 	{
+		std::shared_ptr<Node> temp = head;
 
+		//If list is empty
+		if (temp == nullptr)
+		{
+			throw std::runtime_error("No values in list");
+		}
+
+		//If value isn't in list
+		if (retreive(oldValue) != oldValue)
+		{
+			throw std::runtime_error("Old value does not exist in list");
+		}
+
+		//Value is in list
+		while (temp->next != nullptr)
+		{
+			if (temp->data == oldValue)
+			{
+				temp->data = newValue;
+			}
+
+			temp = temp->next;
+		}
+		if (temp->data == oldValue)
+		{
+			temp->data = newValue;
+		}
 	}
 
 	// void remove(T value)
 	void remove(T value)
 	{
-
+	
 	}
 
 	//size_t size()
@@ -105,6 +132,7 @@ public:
 		size_t count = 1;
 		std::shared_ptr<Node> temp = head;
 		
+		//If list is empty
 		if (temp == nullptr)
 		{
 			count = 0;
