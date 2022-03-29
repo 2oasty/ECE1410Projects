@@ -46,15 +46,45 @@ public:
 
 		head->prev = newNode;
 		newNode->next = head;
-		tail = head;
 		head = newNode;
 	}
 
 	// T retreive(T value)
 	T retreive(T value)
 	{
-		T temp = value;
-		return temp;
+		T data{};
+
+		std::shared_ptr<Node> temp = head;
+
+		//Nothing in list
+		if (temp == nullptr)
+		{
+			throw std::runtime_error("No values in list");
+		}
+
+		//Walk through list looking for value
+		while (temp->next != nullptr)
+		{
+			if (temp->data == value)
+			{
+				data = temp->data;
+				return data;
+			}
+			temp = temp->next;
+		}
+		if (temp->data == value)
+		{
+			data = temp->data;
+			return data;
+		}
+
+		//If value is not in list
+		if (temp->next == nullptr)
+		{
+			throw std::runtime_error("Value does not exist in list");
+		}
+
+		return data;
 	}
 
 	//void update(T oldValue, T newValue)
@@ -72,7 +102,22 @@ public:
 	//size_t size()
 	size_t size()
 	{
-		return 5;
+		size_t count = 1;
+		std::shared_ptr<Node> temp = head;
+		
+		if (temp == nullptr)
+		{
+			count = 0;
+			return count;
+		}
+
+		while (temp->next != nullptr)
+		{
+			count++;
+			temp = temp->next;
+		}
+
+		return count;
 	}
 
 private:
