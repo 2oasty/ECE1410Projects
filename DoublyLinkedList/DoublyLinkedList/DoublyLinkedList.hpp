@@ -24,8 +24,7 @@ public:
 	//createNode
 	std::shared_ptr<Node> createNode(T value)
 	{
-		//!!!Need to allocate as smart pointer!!!
-		std::shared_ptr<Node> newNode(new Node);
+		std::shared_ptr<Node> newNode = std::make_shared<Node>();
 		newNode->data = value;
 		newNode->prev = nullptr;
 		newNode->next = nullptr;
