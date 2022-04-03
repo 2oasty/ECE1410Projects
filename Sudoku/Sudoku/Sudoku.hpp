@@ -15,4 +15,6 @@ bool checkColumn(Board board, size_t column, size_t n);
 
 bool checkSquare(Board board, size_t boxRow, size_t boxColumn, size_t n);
 
+bool isFull(Board board);
+
 #endif
