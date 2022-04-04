@@ -21,7 +21,12 @@ Board solve(Board board)
 					{
 						boardManip[row][column] = n;
 
-						solve(boardManip);
+						boardManip = solve(boardManip);
+
+						if (isFull(boardManip))
+						{
+							return boardManip;
+						}
 
 						if (!isFull(boardManip))
 						{
