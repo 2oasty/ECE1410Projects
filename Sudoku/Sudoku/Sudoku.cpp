@@ -5,11 +5,9 @@ Board solve(Board board)
 {
 	Board boardManip = board;
 
-	size_t row, column;
-
-	for (row = 0; row < 9; row++)
+	for (size_t row = 0; row < 9; row++)
 	{
-		for (column = 0; column < 9; column++)
+		for (size_t column = 0; column < 9; column++)
 		{
 			if (board[row][column] == 0)
 			{
