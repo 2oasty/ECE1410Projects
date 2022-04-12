@@ -86,7 +86,7 @@ std::vector<int> merge::sort(std::vector<int> vectorToSort)
 	rightItr = 0;
 	mergedVectorItr = 0;
 
-	while (leftItr < (middle + 1) && rightItr < vectorToSort.size() - (middle + 1))
+	while ((leftItr < sizeOfLeft) && (rightItr < sizeOfRight))
 	{
 		if (left[leftItr] <= right[rightItr])
 		{
@@ -102,20 +102,19 @@ std::vector<int> merge::sort(std::vector<int> vectorToSort)
 		mergedVectorItr++;
 	}
 
-	while (leftItr < (middle + 1))
+	while (leftItr < sizeOfLeft)
 	{
 		mergedVector[mergedVectorItr] = left[leftItr];
 		leftItr++;
 		mergedVectorItr++;
 	}
 
-	while (rightItr < vectorToSort.size() - (middle + 1))
+	while (rightItr < sizeOfRight)
 	{
 		mergedVector[mergedVectorItr] = right[rightItr];
 		rightItr++;
 		mergedVectorItr++;
 	}
-
 
 	return mergedVector;
 }
