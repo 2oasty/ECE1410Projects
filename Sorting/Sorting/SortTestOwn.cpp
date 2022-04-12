@@ -51,6 +51,22 @@ TEST(StudentWrittenTests, SelectionSort)
 
 TEST(StudentWrittenTests, MergeSort)
 {
-	/*auto ans = merge::sort(numbers);
-	EXPECT_EQ(ans, sorted);*/
+	auto ans = merge::sort(numbers);
+	EXPECT_EQ(ans, sorted);
+
+	std::vector<int> numbersOwn1 = { 0, 0, 0, 0 };
+	std::vector<int> numbersOwn2 = { 7, -12, 67, 0, 15, 29, -35, 14 };
+	std::vector<int> numbersOwn3 = { -45 };
+
+	auto ans1 = merge::sort(numbersOwn1);
+	std::sort(numbersOwn1.begin(), numbersOwn1.end());
+	EXPECT_EQ(ans1, numbersOwn1);
+
+	auto ans2 = merge::sort(numbersOwn2);
+	std::sort(numbersOwn2.begin(), numbersOwn2.end());
+	EXPECT_EQ(ans2, numbersOwn2);
+
+	auto ans3 = merge::sort(numbersOwn3);
+	std::sort(numbersOwn3.begin(), numbersOwn3.end());
+	EXPECT_EQ(ans3, numbersOwn3);
 }

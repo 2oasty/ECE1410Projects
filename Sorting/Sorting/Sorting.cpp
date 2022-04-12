@@ -42,12 +42,80 @@ std::vector<int> selection::sort(std::vector<int> vectorToSort)
 		std::swap(vectorToSort[i], vectorToSort[smallest]);
 	}
 
-
 	return vectorToSort;
 }
 
 //Merge Sort
 std::vector<int> merge::sort(std::vector<int> vectorToSort)
 {
-	return vectorToSort;
+	std::vector<int> mergedVector(vectorToSort.size());
+
+	//Terminating case
+	if (vectorToSort.size() == 1 || vectorToSort.size() == 0)
+	{
+		return vectorToSort;
+	}
+
+	size_t middle = (vectorToSort.size() / 2) - 1;
+
+	size_t sizeOfLeft = middle + 1;
+
+	size_t sizeOfRight = vectorToSort.size() - (middle + 1);
+
+	std::vector<int> left(sizeOfLeft);
+	std::vector<int> right(sizeOfRight);
+
+	for (size_t i = 0; i < vectorToSort.size(); i++)
+	{
+		if (i <= middle)
+		{
+			left[i] = vectorToSort[i];
+		}
+
+		else if (i > middle)
+		{
+			right[i - middle - 1] = vectorToSort[i];
+		}
+	}
+
+	left = merge::sort(left);
+	right = merge::sort(right);
+
+	size_t leftItr, rightItr, mergedVectorItr;
+	leftItr = 0;
+	rightItr = 0;
+	mergedVectorItr = 0;
+
+	while (leftItr < (middle + 1) && rightItr < vectorToSort.size() - (middle + 1))
+	{
+		if (left[leftItr] <= right[rightItr])
+		{
+			mergedVector[mergedVectorItr] = left[leftItr];
+			leftItr++;
+		}
+		else
+		{
+			mergedVector[mergedVectorItr] = right[rightItr];
+			rightItr++;
+		}
+
+		mergedVectorItr++;
+	}
+
+	while (leftItr < (middle + 1))
+	{
+		mergedVector[mergedVectorItr] = left[leftItr];
+		leftItr++;
+		mergedVectorItr++;
+	}
+
+	while (rightItr < vectorToSort.size() - (middle + 1))
+	{
+		mergedVector[mergedVectorItr] = right[rightItr];
+		rightItr++;
+		mergedVectorItr++;
+	}
+
+
+	return mergedVector;
 }
