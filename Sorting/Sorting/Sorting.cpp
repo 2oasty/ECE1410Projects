@@ -7,9 +7,9 @@
 //Bubble Sort
 std::vector<int> bubble::sort(std::vector<int> vectorToSort)
 {
-	for (int i = 0; i < vectorToSort.size() - 1; i++)
+	for (size_t i = 0; i < vectorToSort.size() - 1; i++)
 	{
-		for (int j = 0; j < vectorToSort.size() - 1; j++)
+		for (size_t j = 0; j < vectorToSort.size() - 1; j++)
 		{
 			if (vectorToSort[j] > vectorToSort[j + 1])
 			{
@@ -24,14 +24,14 @@ std::vector<int> bubble::sort(std::vector<int> vectorToSort)
 //Selection Sort
 std::vector<int> selection::sort(std::vector<int> vectorToSort)
 {
- 	int smallest = 0;
+ 	size_t smallest = 0;
 
-	for (int i = 0; i < vectorToSort.size(); i++)
+	for (size_t i = 0; i < vectorToSort.size(); i++)
 	{
 		smallest = i;
 
 		//Determines location of smallest number in array
-		for (int j = i; j < vectorToSort.size() - 1; j++)
+		for (size_t j = i; j < vectorToSort.size() - 1; j++)
 		{
 			if (vectorToSort[smallest] > vectorToSort[j + 1])
 			{
