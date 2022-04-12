@@ -24,6 +24,25 @@ std::vector<int> bubble::sort(std::vector<int> vectorToSort)
 //Selection Sort
 std::vector<int> selection::sort(std::vector<int> vectorToSort)
 {
+ 	int smallest = 0;
+
+	for (int i = 0; i < vectorToSort.size(); i++)
+	{
+		smallest = i;
+
+		//Determines location of smallest number in array
+		for (int j = i; j < vectorToSort.size() - 1; j++)
+		{
+			if (vectorToSort[smallest] > vectorToSort[j + 1])
+			{
+				smallest = j + 1;
+			}
+		}
+
+		std::swap(vectorToSort[i], vectorToSort[smallest]);
+	}
+
+
 	return vectorToSort;
 }
 
