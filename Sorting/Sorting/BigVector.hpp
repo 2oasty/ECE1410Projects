@@ -1,3 +1,5 @@
+#ifndef BIGVECTOR_HPP
+#define BIGVECTOR_HPP
 
 #include <gtest/gtest.h>
 
@@ -229,3 +231,5 @@ const std::vector<int> sorted = {
   989279, 989924, 992120, 992305, 993441, 994279, 994627, 996061, 999279,
   999892,
 };
+
+#endif
