@@ -5,6 +5,27 @@
 #include <stdexcept>
 #include <vector>
 
+/******************************************************************************
+* TIME COMPLEXITIES
+*******************************************************************************
+* Copy constructor: O(n)
+* 
+* add: O(log n)
+* 
+* update: O(n)
+* 
+* remove: O(n)
+* 
+* at: O(n)
+* 
+* operator[]: O(n)
+* 
+* traverse: O(n)
+* 
+* size: O(n)
+******************************************************************************/
+
+
 enum class Direction
 {
 	LEFT,
@@ -32,11 +53,7 @@ public:
 	//Copy constructor
 	Bst(Bst const& bst)
 	{
-
-		add(bst.head->key, bst.head->value);
-
-	
-
+		head = bst.head;
 	}
 
 	//createNode
