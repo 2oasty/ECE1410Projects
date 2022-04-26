@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <stdexcept>
+#include <vector>
 
 enum class Direction
 {
@@ -124,7 +125,22 @@ public:
 	//Traverse
 	Value traverse(std::vector<Direction> const& path)
 	{
-		return at(key);
+
+		std::shared_ptr<Node> temp = head;
+
+		for (size_t i = 0; i != path.size(); i++)
+		{
+			if (path[i] == Direction::LEFT)
+			{
+				temp = temp->left;
+			}
+			else if (path[i] == Direction::RIGHT)
+			{
+				temp = temp->right;
+			}
+		}
+
+		return temp->value;
 	}
 
 	//Size

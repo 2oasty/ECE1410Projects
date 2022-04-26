@@ -20,5 +20,6 @@ TEST(OwnWrittenTests, BSTOwn)
 	EXPECT_EQ(bst.size(), 5);
 	bst.add(47, -13);
 	EXPECT_EQ(bst.size(), 6);
-
+	std::vector<Direction> test({Direction::LEFT, Direction::RIGHT});
+	EXPECT_EQ(bst.traverse(test), -10);
 }
