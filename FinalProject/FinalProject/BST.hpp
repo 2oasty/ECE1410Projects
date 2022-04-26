@@ -33,6 +33,10 @@ public:
 	Bst(Bst const& bst)
 	{
 
+		add(bst.head->key, bst.head->value);
+
+	
+
 	}
 
 	//createNode
