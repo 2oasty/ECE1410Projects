@@ -14,5 +14,11 @@ TEST(OwnWrittenTests, BSTOwn)
 	EXPECT_EQ(bst.at(24), -7);
 	EXPECT_EQ(bst.at(26), -10);
 	EXPECT_THROW(bst.at(3), std::runtime_error);
+	EXPECT_EQ(bst[56], 0);
+	EXPECT_EQ(bst[13], 12);
+	EXPECT_THROW(bst[65], std::runtime_error);
+	EXPECT_EQ(bst.size(), 5);
+	bst.add(47, -13);
+	EXPECT_EQ(bst.size(), 6);
 
 }

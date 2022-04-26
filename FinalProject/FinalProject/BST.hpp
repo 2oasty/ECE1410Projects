@@ -130,7 +130,25 @@ public:
 	//Size
 	size_t size()
 	{
-		return 5;
+		size_t count = 0;
+
+		walkThru(head, count);
+
+		return count;
+	}
+
+	//Walks through all nodes
+	size_t walkThru(std::shared_ptr<Node> temp, size_t &count)
+	{
+
+		if (temp != nullptr)
+		{
+			walkThru(temp->left, count);
+			walkThru(temp->right, count);
+			count++;
+		}
+
+		return count;
 	}
 
 private:
