@@ -82,6 +82,26 @@ public:
 	//Update
 	void update(Key const& key, Value const& value)
 	{
+		std::shared_ptr<Node> temp = head;
+
+		while (temp != nullptr)
+		{
+			if (key == temp->key)
+			{
+				temp->value = value;
+				return;
+			}
+			else if (key < temp->key)
+			{
+				temp = temp->left;
+			}
+			else if (key > temp->key)
+			{
+				temp = temp->right;
+			}
+		}
+
+		throw std::runtime_error("Key doesn't exist in BST");
 
 	}
 	
