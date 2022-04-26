@@ -26,4 +26,10 @@ TEST(OwnWrittenTests, BSTOwn)
 	EXPECT_EQ(bst.traverse(test), -11);
 	EXPECT_EQ(bst[26], -11);
 	EXPECT_THROW(bst.update(5, 0), std::runtime_error);
+	bst.remove(42);
+	EXPECT_EQ(bst.size(), 5);
+	std::vector<Direction> test2({});
+	EXPECT_EQ(bst.traverse(test2), -7);
+	std::vector<Direction> test3({ Direction::RIGHT, Direction::RIGHT, Direction::LEFT });
+	EXPECT_EQ(bst.traverse(test3), -13);
 }

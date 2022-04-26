@@ -101,14 +101,41 @@ public:
 			}
 		}
 
-		throw std::runtime_error("Key doesn't exist in BST");
+		throw std::runtime_error("Node doesn't exist in BST");
 
 	}
 	
 	//Remove
 	void remove(Key const& key)
 	{
+		walkThru(head, key);
+		std::shared_ptr<Node> temp = nullptr;
 
+		//Node has no children or one child
+		if (head->right == nullptr)
+		{
+			head = head->left;
+		}
+		else if (head->left == nullptr)
+		{
+			head = head->right;
+		}
+
+		//Node has two children
+		else
+		{
+			temp = head->left;
+
+			while (temp->right != nullptr)
+			{
+				temp = temp->right;
+			}
+
+			temp->right = head->right;
+
+			head = head->left;
+
+		}
 	}
 
 	//At
@@ -132,7 +159,7 @@ public:
 			}
 		}
 		
-		throw std::runtime_error("Key doesn't exist in BST");
+		throw std::runtime_error("Node doesn't exist in BST");
 
 	}
 
@@ -168,24 +195,49 @@ public:
 	{
 		size_t count = 0;
 
-		walkThru(head, count);
+		walkThruCount(head, count);
 
 		return count;
 	}
 
 	//Walks through all nodes
-	size_t walkThru(std::shared_ptr<Node> temp, size_t &count)
+	size_t walkThruCount(std::shared_ptr<Node> temp, size_t &count)
 	{
 
 		if (temp != nullptr)
 		{
-			walkThru(temp->left, count);
-			walkThru(temp->right, count);
+			walkThruCount(temp->left, count);
+			walkThruCount(temp->right, count);
 			count++;
 		}
 
 		return count;
 	}
+
+	std::shared_ptr<Node> walkThru(std::shared_ptr<Node> &temp, Key const& key)
+	{
+		//std::shared_ptr<Node> temp = head;
+
+		while (temp != nullptr)
+		{
+			if (key == temp->key)
+			{
+				return temp;
+			}
+			else if (key < temp->key)
+			{
+				temp = temp->left;
+			}
+			else if (key > temp->key)
+			{
+				temp = temp->right;
+			}
+		}
+
+		throw std::runtime_error("Node doesn't exist in BST");
+
+	}
+
 
 private:
 	std::shared_ptr<Node> head;
